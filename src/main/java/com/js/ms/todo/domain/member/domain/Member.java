@@ -1,5 +1,6 @@
 package com.js.ms.todo.domain.member.domain;
 
+import com.js.ms.todo.domain.notice.domain.Notice;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
@@ -27,6 +28,9 @@ public class Member {
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.PERSIST, orphanRemoval = true)
     @Builder.Default private List<MemberCategory> memberCategories= new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @Builder.Default private List<Notice> notices = new ArrayList<>();
 
 
     @Column(unique = true)

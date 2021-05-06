@@ -1,15 +1,15 @@
 package com.js.ms.todo.domain.member.domain;
 
 import com.js.ms.todo.domain.category.domain.Category;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
 public class MemberCategory {
 
     @Id

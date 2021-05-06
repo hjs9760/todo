@@ -16,14 +16,15 @@ public class MailController {
     private final MailService mailService;
 
     @GetMapping("/sendEmail")
-    public Response sendMail(@RequestParam String userId) {
-        return mailService.sendMail(userId);
+    public Response sendMemberCheckMail(@RequestParam String userId) {
+        return mailService.sendMemberCheckMail(userId);
     }
 
     @GetMapping("/checkEmail")
     public Response checkEmail(@RequestParam String userId, @RequestParam String emailCheckToken) {
         return mailService.checkEmail(userId, emailCheckToken);
     }
+
 
 
 }

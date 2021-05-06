@@ -21,7 +21,7 @@ public class MailService {
     private final MemberRepository memberRepository;
 
     @Transactional
-    public Response sendMail(String userId) {
+    public Response sendMemberCheckMail(String userId) {
         Member member = memberRepository.findByUserId(userId);
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
@@ -39,11 +39,10 @@ public class MailService {
 
         if(member.getEmailCheckToken().equals(emailCheckToken)) {
             member.convertEmailCheck(true);
+            memberRepository.save(member);
             return Response.of("200", "인증에 성공했습니다. \n정상적으로 서비스 이용이 가능합니다.");
         } else {
             return Response.of(ErrorCode.MEMBER_SIGNUP_EMAIL_FAIL);
         }
     }
-
-
 }

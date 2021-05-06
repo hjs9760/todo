@@ -44,10 +44,17 @@ public class CategoryController {
         return categoryService.delete(memberId, categoryId);
     }
 
-//    @PostMapping("/invite")
-//    public Response invite(@AuthenticationPrincipal Long memberId, @RequestBody CategoryInviteForm dto) {
-//        return categoryService.invite(memberId, dto);
-//    }
+    @PostMapping("/share/{categoryId}")
+    public Response share(@AuthenticationPrincipal Long memberId, @PathVariable Long categoryId) {
+        return categoryService.share(memberId, categoryId);
+    }
+
+    @GetMapping("/findShare")
+    public Response findShare(@AuthenticationPrincipal Long memberId) {
+        return categoryService.findShare(memberId);
+    }
+
+
 
 
 }
