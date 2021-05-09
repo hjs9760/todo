@@ -25,6 +25,8 @@ public enum ErrorCode {
     MEMBER_AUTHORIZATION_DENIED("B002", "Member AUTHORIZATION Exception"),
     // 회원가입 후 이메일 인증 예외
     MEMBER_SIGNUP_EMAIL_FAIL("B003", "이메일 인증에 실패했습니다. \n인증해 주세요."),
+    // 로그인 실패 예외
+    MEMBER_SIGNIN_ID_FAIL("B004", "존재하지 않는 아이디입니다."),
 
     // Category
     // 카테고리 생성 예외

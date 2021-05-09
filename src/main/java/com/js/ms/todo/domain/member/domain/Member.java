@@ -97,6 +97,7 @@ public class Member {
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;
         this.joinAt = LocalDateTime.now();
+        this.role = Role.ROLE_USER;
     }
 
     public void updateOauth2Info(String accessToken, String refreshToken) {

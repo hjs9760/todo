@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public enum Status {
 
-    PLAN("계획", "whitesmoke"),
+    PLAN("계획", "yellow"),
     PROGRESS("진행", "green"),
     COMPLETE("완료", "blue"),
     PROBLEM("문제", "red"),

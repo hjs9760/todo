@@ -40,6 +40,8 @@ public class MemberService {
     public Response signIn(SignInForm signInForm) {
         Member member = memberRepository.findByUserId(signInForm.getUserId());
 
+        if(ObjectUtils.isEmpty(member)) return Response.of(ErrorCode.MEMBER_SIGNIN_ID_FAIL);
+
         if(!member.isEmailCheck()) {
             //todo : 인증 코드 재전송
             return Response.of(ErrorCode.MEMBER_SIGNUP_EMAIL_FAIL);

@@ -43,7 +43,7 @@ public class NoticeService {
                 break;
             case SHARECATEGORY:
                 fromName = memberRepository.findById(memberId).get().getName();
-                text = fromName + " 님이 " + category.getName() + "를 공유 하셨습니다.";
+                text = fromName + " 님이 '" + category.getName() + "'를 공유 하셨습니다.";
                 break;
             case UPDATECATEGORY:
                 text = category.getName() + " 이 변경 되었습니다.";

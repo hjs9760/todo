@@ -14,13 +14,13 @@ import java.io.IOException;
 public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
         MyOAuth2User oAuth2User = (MyOAuth2User) authentication.getPrincipal();
 
         String jwt = JWTGenerator.generate(oAuth2User.dbPK, oAuth2User.email, oAuth2User.role);
 
         response.setStatus(200);
-        response.sendRedirect("http://localhost:8081/oauth-callback?token="+jwt);
+        response.sendRedirect("http://localhost:8081/oauth-callback?token="+jwt+"&userInfo="+oAuth2User.email);
 
     }
 }
