@@ -28,13 +28,13 @@ public class NoticeController {
     }
 
     @GetMapping("/find")
-    public Response findNotice(@AuthenticationPrincipal Long memberId) {
-        return noticeService.findNotice(memberId);
+    public Response findNoticeAll(@AuthenticationPrincipal Long memberId) {
+        return noticeService.findNoticeAll(memberId);
     }
 
-    @PostMapping("/update")
+    @PostMapping("/check")
     public Response checkNotice(@AuthenticationPrincipal Long memberId, @Valid @RequestBody NoticeUpdateForm noticeUpdateForm) {
-        return noticeService.update(noticeUpdateForm);
+        return noticeService.checkNotice(noticeUpdateForm);
     }
 
 }

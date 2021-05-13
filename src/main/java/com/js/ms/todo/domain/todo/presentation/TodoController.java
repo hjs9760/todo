@@ -26,8 +26,8 @@ public class TodoController {
      */
 
     @GetMapping("/find/{sectionId}")
-    public Response findTodo(@PathVariable Long sectionId) {
-        return todoService.find(sectionId);
+    public Response findTodoBySection(@PathVariable Long sectionId) {
+        return todoService.findTodoBySection(sectionId);
     }
 
     @PostMapping("/save")

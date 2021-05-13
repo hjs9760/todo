@@ -72,7 +72,7 @@ public class SectionService {
     }
 
     @Transactional(readOnly = true)
-    public Response find(Long categoryId) {
+    public Response findSectionByCategory(Long categoryId) {
         List<Section> sections = sectionRepository.findByCategoryId(categoryId);
         List<SectionInfo> sectionInfos = new ArrayList<>();
 

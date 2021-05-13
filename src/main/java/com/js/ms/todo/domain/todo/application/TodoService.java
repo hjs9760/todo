@@ -77,7 +77,7 @@ public class TodoService {
     }
 
     @Transactional(readOnly = true)
-    public Response find(Long sectionId) {
+    public Response findTodoBySection(Long sectionId) {
         List<Todo> todos = todoRepository.findBySectionId(sectionId);
         List<TodoInfo> todoInfos = new ArrayList<>();
 
@@ -93,27 +93,18 @@ public class TodoService {
         List<MemberCategory> memberCategories = memberCategoryRepository.findByMemberId(memberId);
         List<TodoInfo> todoInfos = new ArrayList<>();
 
-
-        if (!ObjectUtils.isEmpty(todoFindForm.getStatus())) {
-            for (MemberCategory memberCategory : memberCategories) {
-                Category category = memberCategory.getCategory();
-                List<Section> sections = sectionRepository.findByCategoryId(category.getId());
-                for (Section section : sections) {
-                    List<Todo> todos = todoRepository.findBySectionIdAndStatusAndEndDateBetween(section.getId(), todoFindForm.getStatus(), todoFindForm.getStartDate(), todoFindForm.getEndDate());
-                    for (Todo todo : todos) {
-                        todoInfos.add(TodoInfo.convertFrom(todo));
-                    }
+        for (MemberCategory memberCategory : memberCategories) {
+            Category category = memberCategory.getCategory();
+            List<Section> sections = sectionRepository.findByCategoryId(category.getId());
+            for (Section section : sections) {
+                List<Todo> todos = new ArrayList<>();
+                if(!ObjectUtils.isEmpty(todoFindForm.getStatus())) {
+                    todos = todoRepository.findBySectionIdAndStatusAndEndDateBetween(section.getId(), todoFindForm.getStatus(), todoFindForm.getStartDate(), todoFindForm.getEndDate());
+                } else {
+                    todos = todoRepository.findBySectionIdAndEndDateBetween(section.getId(), todoFindForm.getStartDate(), todoFindForm.getEndDate());
                 }
-            }
-        } else {
-            for (MemberCategory memberCategory : memberCategories) {
-                Category category = memberCategory.getCategory();
-                List<Section> sections = sectionRepository.findByCategoryId(category.getId());
-                for (Section section : sections) {
-                    List<Todo> todos = todoRepository.findBySectionIdAndEndDateBetween(section.getId(), todoFindForm.getStartDate(), todoFindForm.getEndDate());
-                    for (Todo todo : todos) {
-                        todoInfos.add(TodoInfo.convertFrom(todo));
-                    }
+                for (Todo todo : todos) {
+                    todoInfos.add(TodoInfo.convertFrom(todo));
                 }
             }
         }
@@ -125,30 +116,21 @@ public class TodoService {
         List<MemberCategory> memberCategories = memberCategoryRepository.findByMemberId(memberId);
         List<TodoInfo> todoInfos = new ArrayList<>();
 
-        if (String.valueOf(status).equals("ALL")) {
-            for (MemberCategory memberCategory : memberCategories) {
-                Category category = memberCategory.getCategory();
-                List<Section> sections = sectionRepository.findByCategoryId(category.getId());
-                for (Section section : sections) {
-                    List<Todo> todos = todoRepository.findBySectionId(section.getId());
-                    for (Todo todo : todos) {
-                        todoInfos.add(TodoInfo.convertFrom(todo));
-                    }
+        for (MemberCategory memberCategory : memberCategories) {
+            Category category = memberCategory.getCategory();
+            List<Section> sections = sectionRepository.findByCategoryId(category.getId());
+            for (Section section : sections) {
+                List<Todo> todos = new ArrayList<>();
+                if (String.valueOf(status).equals("ALL")) {
+                    todos = todoRepository.findBySectionId(section.getId());
+                } else {
+                    todos = todoRepository.findBySectionIdAndStatus(section.getId(), status);
                 }
-            }
-        } else {
-            for (MemberCategory memberCategory : memberCategories) {
-                Category category = memberCategory.getCategory();
-                List<Section> sections = sectionRepository.findByCategoryId(category.getId());
-                for (Section section : sections) {
-                    List<Todo> todos = todoRepository.findBySectionIdAndStatus(section.getId(), status);
-                    for (Todo todo : todos) {
-                        todoInfos.add(TodoInfo.convertFrom(todo));
-                    }
+                for (Todo todo : todos) {
+                    todoInfos.add(TodoInfo.convertFrom(todo));
                 }
             }
         }
-
 
         return Response.of("200", todoInfos);
     }

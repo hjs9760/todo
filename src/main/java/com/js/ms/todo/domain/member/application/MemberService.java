@@ -32,7 +32,7 @@ public class MemberService {
         }
     }
 
-    public boolean chekId(String userId) {
+    public boolean checkId(String userId) {
         return memberRepository.existsByUserId(userId);
     }
 

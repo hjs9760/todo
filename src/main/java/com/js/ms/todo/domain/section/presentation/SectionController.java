@@ -24,8 +24,8 @@ public class SectionController {
      */
 
     @GetMapping("/find/{categoryId}")
-    public Response findSection(@PathVariable Long categoryId) {
-        return sectionService.find(categoryId);
+    public Response findSectionByCategory(@PathVariable Long categoryId) {
+        return sectionService.findSectionByCategory(categoryId);
     }
 
     @PostMapping("/save")

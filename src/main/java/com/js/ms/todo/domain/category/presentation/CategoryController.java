@@ -25,8 +25,8 @@ public class CategoryController {
      */
 
     @GetMapping("/find")
-    public Response findCategory(@AuthenticationPrincipal Long memberId) {
-        return categoryService.findCategory(memberId);
+    public Response findCategoryAll(@AuthenticationPrincipal Long memberId) {
+        return categoryService.findCategoryAll(memberId);
     }
 
     @PostMapping("/save")
@@ -50,8 +50,8 @@ public class CategoryController {
     }
 
     @GetMapping("/findShare")
-    public Response findShare(@AuthenticationPrincipal Long memberId) {
-        return categoryService.findShare(memberId);
+    public Response findShareAll(@AuthenticationPrincipal Long memberId) {
+        return categoryService.findShareAll(memberId);
     }
 
 

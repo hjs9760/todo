@@ -27,7 +27,7 @@ public class CategoryService {
     private final MemberRepository memberRepository;
 
     @Transactional(readOnly = true)
-    public Response findCategory(Long memberId) {
+    public Response findCategoryAll(Long memberId) {
         List<MemberCategory> memberCategories = memberCategoryRepository.findByMemberId(memberId);
         List<CategoryInfo> categoryInfos = new ArrayList<>();
 
@@ -104,19 +104,19 @@ public class CategoryService {
     }
 
     @Transactional(readOnly = true)
-    public Response findShare(Long memberId) {
+    public Response findShareAll(Long memberId) {
         List<String> memberNames = new ArrayList<>();
         List<MemberCategory> memberCategories = memberCategoryRepository.findByMemberId(memberId);
         List<CategoryShareInfo> categoryShareInfos = new ArrayList<>();
 
         for (MemberCategory memberCategory : memberCategories) {
-            //카테고리 정보
+            //내가 가진 카테고리 정보
             Category category = memberCategory.getCategory();
 
-            //회원정보
-            List<MemberCategory> categoryInfos = memberCategoryRepository.findByCategoryId(category.getId());
-            for (MemberCategory categoryInfo : categoryInfos) {
-                memberNames.add(categoryInfo.getMember().getName());
+            // 내가 가진 카테고리를 가진 회원들
+            List<MemberCategory> memberInfosHavingCategory = memberCategoryRepository.findByCategoryId(category.getId());
+            for (MemberCategory member : memberInfosHavingCategory) {
+                memberNames.add(member.getMember().getName());
             }
             ShareMemberInfo shareMemberInfo = ShareMemberInfo.builder()
                     .name(memberNames)

@@ -73,7 +73,7 @@ public class NoticeService {
     }
 
     @Transactional(readOnly = true)
-    public Response findNotice(Long memberId) {
+    public Response findNoticeAll(Long memberId) {
         List<Notice> notices = noticeRepository.findByMemberId(memberId);
         List<NoticeInfo> noticeInfos = new ArrayList<>();
 
@@ -85,7 +85,7 @@ public class NoticeService {
     }
 
     @Transactional
-    public Response update(NoticeUpdateForm noticeUpdateForm) {
+    public Response checkNotice(NoticeUpdateForm noticeUpdateForm) {
         Notice notice = noticeRepository.findById(noticeUpdateForm.getNoticeId()).get();
 
         notice.changeNotice(noticeUpdateForm.getNoticeCheck());

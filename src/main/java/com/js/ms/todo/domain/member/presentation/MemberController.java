@@ -22,8 +22,8 @@ public class MemberController {
     private final PasswordEncoder passwordEncoder;
 
     @GetMapping("checkId")
-    public boolean chekId(@RequestParam String userId) {
-        return memberService.chekId(userId);
+    public boolean checkId(@RequestParam String userId) {
+        return memberService.checkId(userId);
     }
 
 
