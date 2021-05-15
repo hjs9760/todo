@@ -6,6 +6,7 @@ import com.js.ms.todo.domain.member.domain.Member;
 import com.js.ms.todo.domain.member.domain.MemberRepository;
 import com.js.ms.todo.domain.notice.domain.Notice;
 import com.js.ms.todo.domain.notice.domain.NoticeRepository;
+import com.js.ms.todo.domain.notice.domain.NoticeType;
 import com.js.ms.todo.domain.notice.presentation.dto.NoticeCheckType;
 import com.js.ms.todo.domain.notice.presentation.dto.NoticeInfo;
 import com.js.ms.todo.domain.notice.presentation.dto.NoticeSaveForm;
@@ -32,35 +33,25 @@ public class NoticeService {
 
     @Transactional
     public Response save(Long memberId, NoticeSaveForm dto) {
-        String fromName = "admin";
         Member toMember = memberRepository.findByEmail(dto.getEmail());
         Category category = categoryRepository.findById(dto.getCategoryId()).get();
+        NoticeType noticeType = NoticeType.valueOf(String.valueOf(dto.getNoticeType()));
+        String fromName = "";
 
-        String text = "";
-        switch (dto.getNoticeType()) {
-            case ENDTODO:
-                text = category.getName() + " 마감 기한이 3일 남았습니다.";
-                break;
-            case SHARECATEGORY:
-                fromName = memberRepository.findById(memberId).get().getName();
-                text = fromName + " 님이 '" + category.getName() + "'를 공유 하셨습니다.";
-                break;
-            case UPDATECATEGORY:
-                text = category.getName() + " 이 변경 되었습니다.";
-                break;
-        }
+        if(ObjectUtils.isEmpty(noticeType.getFromName())) fromName = memberRepository.findById(memberId).get().getName();
+        else fromName = noticeType.getFromName();
 
         Notice notice = Notice.builder()
                 .member(toMember)
                 .categoryId(dto.getCategoryId())
                 .fromName(fromName)
-                .text(text)
+                .text(noticeType.getText(category.getName()))
                 .noticeType(dto.getNoticeType())
                 .registTime(LocalDateTime.now())
                 .build();
 
 
-        if (!ObjectUtils.isEmpty(noticeRepository.save(notice))) return Response.of("200", "공유 알림을 보냈습니다.");
+        if (!ObjectUtils.isEmpty(noticeRepository.save(notice))) return Response.of("200", "알림을 보냈습니다.");
         else return Response.of(ErrorCode.NOTICE_SAVE_FAIL.getCode(), ErrorCode.NOTICE_SAVE_FAIL);
     }
 

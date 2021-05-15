@@ -37,7 +37,7 @@ public class MemberService {
     }
 
 
-    public Response signIn(SignInForm signInForm) {
+    public Response signInAndInitializeJWT(SignInForm signInForm) {
         Member member = memberRepository.findByUserId(signInForm.getUserId());
 
         if(ObjectUtils.isEmpty(member)) return Response.of(ErrorCode.MEMBER_SIGNIN_ID_FAIL);

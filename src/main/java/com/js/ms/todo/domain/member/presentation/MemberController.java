@@ -44,8 +44,8 @@ public class MemberController {
     }
 
     @PostMapping("/signIn")
-    public Response signIn(@Valid @RequestBody SignInForm signInForm) {
-        return memberService.signIn(signInForm);
+    public Response signInAndInitializeJWT(@Valid @RequestBody SignInForm signInForm) {
+        return memberService.signInAndInitializeJWT(signInForm);
     }
 
 

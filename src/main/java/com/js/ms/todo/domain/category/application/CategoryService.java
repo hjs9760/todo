@@ -105,11 +105,11 @@ public class CategoryService {
 
     @Transactional(readOnly = true)
     public Response findShareAll(Long memberId) {
-        List<String> memberNames = new ArrayList<>();
         List<MemberCategory> memberCategories = memberCategoryRepository.findByMemberId(memberId);
         List<CategoryShareInfo> categoryShareInfos = new ArrayList<>();
 
         for (MemberCategory memberCategory : memberCategories) {
+            List<String> memberNames = new ArrayList<>();
             //내가 가진 카테고리 정보
             Category category = memberCategory.getCategory();
 
