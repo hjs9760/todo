@@ -36,8 +36,8 @@ public class NoticeService {
         Member toMember = memberRepository.findByEmail(dto.getEmail());
         Category category = categoryRepository.findById(dto.getCategoryId()).get();
         NoticeType noticeType = NoticeType.valueOf(String.valueOf(dto.getNoticeType()));
-        String fromName = "";
 
+        String fromName = "";
         if(ObjectUtils.isEmpty(noticeType.getFromName())) fromName = memberRepository.findById(memberId).get().getName();
         else fromName = noticeType.getFromName();
 
@@ -49,7 +49,6 @@ public class NoticeService {
                 .noticeType(dto.getNoticeType())
                 .registTime(LocalDateTime.now())
                 .build();
-
 
         if (!ObjectUtils.isEmpty(noticeRepository.save(notice))) return Response.of("200", "알림을 보냈습니다.");
         else return Response.of(ErrorCode.NOTICE_SAVE_FAIL.getCode(), ErrorCode.NOTICE_SAVE_FAIL);

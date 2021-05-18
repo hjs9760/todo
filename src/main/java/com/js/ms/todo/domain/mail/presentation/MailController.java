@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/mail", produces="application/json;charset=UTF-8")
+@RequestMapping(value = "/mail", produces = "application/json;charset=UTF-8")
 @RequiredArgsConstructor
 public class MailController {
 
@@ -24,7 +24,6 @@ public class MailController {
     public Response checkEmail(@RequestParam String userId, @RequestParam String emailCheckToken) {
         return mailService.checkEmail(userId, emailCheckToken);
     }
-
 
 
 }

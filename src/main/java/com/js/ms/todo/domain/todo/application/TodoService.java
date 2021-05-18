@@ -61,6 +61,7 @@ public class TodoService {
         }
 
         todo.update(dto);
+
         if (!ObjectUtils.isEmpty(todoRepository.save(todo))) {
             return Response.of("200", todo.getSection().getId(), "할일이 수정 되었습니다.");
         }
@@ -98,7 +99,7 @@ public class TodoService {
             List<Section> sections = sectionRepository.findByCategoryId(category.getId());
             for (Section section : sections) {
                 List<Todo> todos = new ArrayList<>();
-                if(!ObjectUtils.isEmpty(todoFindForm.getStatus())) {
+                if (!ObjectUtils.isEmpty(todoFindForm.getStatus())) {
                     todos = todoRepository.findBySectionIdAndStatusAndEndDateBetween(section.getId(), todoFindForm.getStatus(), todoFindForm.getStartDate(), todoFindForm.getEndDate());
                 } else {
                     todos = todoRepository.findBySectionIdAndEndDateBetween(section.getId(), todoFindForm.getStartDate(), todoFindForm.getEndDate());

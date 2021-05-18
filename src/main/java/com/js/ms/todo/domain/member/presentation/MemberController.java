@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 
 
 @RestController
-@RequestMapping(value = "/member", produces="application/json;charset=UTF-8")
+@RequestMapping(value = "/member", produces = "application/json;charset=UTF-8")
 @RequiredArgsConstructor
 public class MemberController {
 
@@ -25,7 +25,6 @@ public class MemberController {
     public boolean checkId(@RequestParam String userId) {
         return memberService.checkId(userId);
     }
-
 
     @PostMapping("/signUp")
     public Response signUp(@Valid @RequestBody SignUpForm signUpForm) {

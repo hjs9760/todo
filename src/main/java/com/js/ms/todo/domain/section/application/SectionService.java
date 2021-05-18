@@ -30,6 +30,7 @@ public class SectionService {
     public Response save(Long memberId, SectionSaveForm dto) {
         MemberCategory memberCategory = memberCategoryRepository.findByMemberIdAndCategoryId(memberId, dto.getCategoryId());
         if (ObjectUtils.isEmpty(memberCategory)) return Response.of(ErrorCode.SECTION_SAVE_FAIL);
+
         Category category = memberCategory.getCategory();
 
         if(!ObjectUtils.isEmpty(sectionRepository.findByName(dto.getName()))) {

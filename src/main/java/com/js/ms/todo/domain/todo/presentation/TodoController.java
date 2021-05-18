@@ -19,12 +19,6 @@ public class TodoController {
 
     private final TodoService todoService;
 
-    /**
-     * 기능
-     * 1. 할일 생성, 수정, 삭제, 조회(crud)
-     * 2. 공유되고 있는 할일에 섹션이 생성, 수정, 삭제가 되었을시 알림
-     */
-
     @GetMapping("/find/{sectionId}")
     public Response findTodoBySection(@PathVariable Long sectionId) {
         return todoService.findTodoBySection(sectionId);

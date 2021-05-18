@@ -12,16 +12,10 @@ import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/section", produces="application/json;charset=UTF-8")
+@RequestMapping(value = "/section", produces = "application/json;charset=UTF-8")
 public class SectionController {
 
     private final SectionService sectionService;
-
-    /**
-     * 기능
-     * 1. 섹션 생성, 수정, 삭제, 조회(crud)
-     * 2. 공유되고 있는 카테고리에 섹션이 생성, 수정, 삭제가 되었을시 알림
-     */
 
     @GetMapping("/find/{categoryId}")
     public Response findSectionByCategory(@PathVariable Long categoryId) {

@@ -88,7 +88,6 @@ public class CategoryService {
     @Transactional
     public Response share(Long memberId, Long categoryId) {
         Category category = categoryRepository.findById(categoryId).get();
-
         Member member = memberRepository.findById(memberId).orElseThrow(() -> new UnAuthenticationException());
 
         MemberCategory memberCategory = MemberCategory.builder()
@@ -110,19 +109,17 @@ public class CategoryService {
 
         for (MemberCategory memberCategory : memberCategories) {
             List<String> memberNames = new ArrayList<>();
-
             Category category = memberCategory.getCategory();
-
-
             List<MemberCategory> memberInfosHavingCategory = memberCategoryRepository.findByCategoryId(category.getId());
+
             for (MemberCategory member : memberInfosHavingCategory) {
                 memberNames.add(member.getMember().getName());
             }
+
             ShareMemberInfo shareMemberInfo = ShareMemberInfo.builder()
                     .name(memberNames)
                     .shareCount(memberNames.size())
                     .build();
-
 
             CategoryShareInfo categoryShareInfo = CategoryShareInfo.builder()
                     .categoryId(category.getId())
@@ -135,7 +132,6 @@ public class CategoryService {
 
             categoryShareInfos.add(categoryShareInfo);
         }
-
 
         return Response.of("200", categoryShareInfos);
     }

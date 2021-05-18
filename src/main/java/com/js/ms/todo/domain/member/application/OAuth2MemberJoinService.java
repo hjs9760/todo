@@ -28,9 +28,7 @@ public class OAuth2MemberJoinService {
             return member;
         }
 
-
-        Optional<Member> optionalMember = memberRepository
-                .findByOauthIdAndProviderName(oauth2Id, providerType);
+        Optional<Member> optionalMember = memberRepository.findByOauthIdAndProviderName(oauth2Id, providerType);
 
         if (optionalMember.isPresent()) {
             optionalMember.get().updateOauth2Info(accessToken, refreshToken);
@@ -38,8 +36,8 @@ public class OAuth2MemberJoinService {
         }
 
         Member newJoinedMeber = new Member(email, oauth2Id, name, providerType, accessToken, refreshToken);
-
         memberRepository.save(newJoinedMeber);
+
         this.eventPublisher.publishEvent(new com.js.ms.todo.domain.member.application.MemberJoinedEvent(newJoinedMeber));
 
         return newJoinedMeber;
