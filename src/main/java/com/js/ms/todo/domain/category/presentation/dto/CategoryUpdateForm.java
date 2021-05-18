@@ -25,6 +25,4 @@ public class CategoryUpdateForm {
 
     private LocalDate endDate;
 
-//    private List<MemberCategoryUpdateForm> memberCategoryUpdateForms;
-
 }

@@ -110,10 +110,10 @@ public class CategoryService {
 
         for (MemberCategory memberCategory : memberCategories) {
             List<String> memberNames = new ArrayList<>();
-            //내가 가진 카테고리 정보
+
             Category category = memberCategory.getCategory();
 
-            // 내가 가진 카테고리를 가진 회원들
+
             List<MemberCategory> memberInfosHavingCategory = memberCategoryRepository.findByCategoryId(category.getId());
             for (MemberCategory member : memberInfosHavingCategory) {
                 memberNames.add(member.getMember().getName());
@@ -123,7 +123,7 @@ public class CategoryService {
                     .shareCount(memberNames.size())
                     .build();
 
-            // 공유 정보
+
             CategoryShareInfo categoryShareInfo = CategoryShareInfo.builder()
                     .categoryId(category.getId())
                     .name(category.getName())

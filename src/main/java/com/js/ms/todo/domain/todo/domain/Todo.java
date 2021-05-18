@@ -15,8 +15,6 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(of = "id")
 public class Todo {
 
-    //todo : file 컬럼 추가
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "todo_id")
