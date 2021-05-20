@@ -10,7 +10,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -38,10 +37,5 @@ public class SignUpForm {
     @Email
     @NotBlank
     private String email;
-
-    public static String generateEmailCheckToken() {
-        return UUID.randomUUID().toString();
-    }
-
 
 }

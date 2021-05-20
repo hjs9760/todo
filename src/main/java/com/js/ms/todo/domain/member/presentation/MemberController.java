@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 
 @RestController
@@ -35,7 +36,7 @@ public class MemberController {
                 .birth(signUpForm.getBirth())
                 .gender(signUpForm.getGender())
                 .email(signUpForm.getEmail())
-                .emailCheckToken(SignUpForm.generateEmailCheckToken())
+                .emailCheckToken(UUID.randomUUID().toString())
                 .joinAt(LocalDateTime.now())
                 .build();
 
