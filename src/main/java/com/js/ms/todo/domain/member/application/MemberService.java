@@ -24,6 +24,8 @@ public class MemberService {
 
     @Transactional
     public Response save(Member member) {
+        if(!ObjectUtils.isEmpty(memberRepository.findByEmail(member.getEmail()))) return Response.of(ErrorCode.MEMBER_SIGNIN_EMAIL_DUPLICATE);
+
         if(!ObjectUtils.isEmpty(memberRepository.save(member))) {
             eventPublisher.publishEvent(new MemberJoinedEvent(member));
             return Response.of("200", "메일 인증후 서비스 이용이 가능합니다.");

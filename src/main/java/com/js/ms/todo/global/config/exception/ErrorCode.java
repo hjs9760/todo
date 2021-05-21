@@ -27,6 +27,8 @@ public enum ErrorCode {
     MEMBER_SIGNUP_EMAIL_FAIL("B003", "이메일 인증에 실패했습니다. \n인증해 주세요."),
     // 로그인 실패 예외
     MEMBER_SIGNIN_ID_FAIL("B004", "존재하지 않는 아이디입니다."),
+    // 회원 가입 이메일 중복 예외
+    MEMBER_SIGNIN_EMAIL_DUPLICATE("B004", "이미 가입된 이메일이 존재합니다."),
 
     // Category
     // 카테고리 생성 예외
