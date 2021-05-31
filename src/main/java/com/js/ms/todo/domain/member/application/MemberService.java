@@ -47,7 +47,7 @@ public class MemberService {
         if(!member.isEmailCheck()) {
             //todo : 인증 코드 재전송
             return Response.of(ErrorCode.MEMBER_SIGNUP_EMAIL_FAIL);
-        } else if(passwordEncoder.matches(signInForm.getPw(), member.getPw())) {
+        } else if(!passwordEncoder.matches(signInForm.getPw(), member.getPw())) {
             return Response.of(ErrorCode.MEMBER_AUTHENTICATION_FAIL);
         } else {
             String jwt = JWTGenerator.generate(member.getId(), member.getEmail(), member.getRole());
