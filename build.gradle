@@ -41,10 +41,11 @@ dependencies {
 	compile "com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.3"
 
 	implementation 'com.querydsl:querydsl-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-quartz'
 }
 
 //querydsl
-def querydslDir = "$buildDir/generated/querydsl"
+def querydslDir = "build/generated/querydsl"
 
 querydsl {
 	jpa = true
