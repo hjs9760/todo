@@ -9,6 +9,10 @@ public enum NoticeType implements Noticeable {
         public String getText(String categoryName) {
             return "'" +  categoryName + "'" + " 마감 기한이 3일 남았습니다.";
         }
+
+        public String getText(String categoryName, int date) {
+            return "'" +  categoryName + "'" + " 마감 기한이 " + date  + "일 남았습니다.";
+        }
     },
     SHARECATEGORY("공유", 2) {
         @Override

@@ -11,11 +11,13 @@ public interface TodoRepository extends JpaRepository<Todo, Long> {
 
     Todo findByName(String name);
 
-     List<Todo> findBySectionId(Long sectionId);
+    List<Todo> findBySectionId(Long sectionId);
 
     List<Todo> findBySectionIdAndStatusAndEndDateBetween(Long id, Status status, LocalDateTime startDate, LocalDateTime endDate);
 
     List<Todo> findBySectionIdAndEndDateBetween(Long id, LocalDateTime startDate, LocalDateTime endDate);
 
     List<Todo> findBySectionIdAndStatus(Long id, Status status);
+
+    List<Todo> findByEndDateBetween(LocalDateTime startDate, LocalDateTime endDate);
 }
