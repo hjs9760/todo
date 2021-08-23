@@ -3,8 +3,6 @@ package com.js.ms.todo.domain.member.application;
 
 import com.js.ms.todo.domain.member.domain.Member;
 import com.js.ms.todo.domain.member.domain.MemberRepository;
-import com.js.ms.todo.global.config.Response.Response;
-import com.js.ms.todo.global.config.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;

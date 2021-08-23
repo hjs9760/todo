@@ -32,11 +32,9 @@ public class SchedulerUtils {
     /**
      * Trigger : Trigger는 Job이 실행되는 실행 조건을 가지고 있는 인스턴스입니다.
      * TriggerBuilder API를 통해 만들 수 있습니다.
-     * 조건으로 단순히 특정 시간 간격으로 할 수 있으며 Cron으로도 작성할 수 있습니다.
      */
     @Bean
     public static Trigger buildTrigger(@Qualifier("buildJobDetail") JobDetail job) {
-        System.out.println("홍정선");
 
         return TriggerBuilder.newTrigger().forJob(job)
                 .withIdentity("NoticeJobTrigger")

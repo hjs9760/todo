@@ -49,4 +49,5 @@ public class TodoController {
     public Response findTodoByStatus(@AuthenticationPrincipal Long memberId, @PathVariable Status status) {
         return todoService.findTodoByStatus(memberId, status);
     }
+
 }

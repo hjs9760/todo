@@ -16,14 +16,15 @@ import java.util.List;
 public class MyOAuth2Config {
 
     @Bean
+    // 인증 정보 저장을 위한 표준 인터페이스
     public OAuth2AuthorizedClientService authorizedClientService(OAuth2MemberJoinService oAuth2MemberJoinService) {
+            // 직접 생성한 구현 클래스 - 인증 정보를 DB에 저장
             return new MyOAuth2AuthorizedClientService(oAuth2MemberJoinService);
     }
 
     /**
      * OAuth2 제공자들에 등록된 우리 App의 정보들(clientid, secret, redirectUrl)은 궁극적으로 OAuth2 제공자(google, facebook 등)에 저장되고 소유되기 떄문에,
      * 우리 App의 Server에 요청하기 위해서는 이 정보들을 별도로 가지고 있어야 한다.
-     * OAuth2에 등록된 App에 정보의 복사본이 저장되어 관리되는 클래스가 ClientRegistrationRepository.java
      *
      */
     @Bean

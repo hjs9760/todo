@@ -32,8 +32,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/oauth2/**").permitAll()
                 .antMatchers("/member/**").permitAll()
                 .antMatchers("/mail/**").permitAll()
-//                .antMatchers("/login").permitAll()
-                // 인증이 되어야 한다
                 .anyRequest().authenticated()
                 .accessDecisionManager(accessDecisionManager())  // 인증이 완료된 사용자가 리소스에 접근하려고 할때 해당 요청을 허용할것인지 판단하는 클래스(==인가)
                 .and()
@@ -43,8 +41,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(new MyAuthenticationSuccessHandler())
                 // OAuth2 로그인 성공 후 사용자 정보를 가져올 때의 설정
                 .userInfoEndpoint()
-                .customUserType(KakaoOAuth2User.class, "kakao")
-                .customUserType(NaverOAuth2User.class, "naver");
+                    .customUserType(KakaoOAuth2User.class, "kakao")
+                    .customUserType(NaverOAuth2User.class, "naver");
     }
 
     @Bean
