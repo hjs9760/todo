@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class TodoApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
-        System.out.println("테스트");
+        System.out.println("테스트1");
         SpringApplication.run(TodoApplication.class, args);
     }
 
