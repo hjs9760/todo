@@ -4,7 +4,7 @@ server:
 # database
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/todo?useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&autoReconnect=true
+    url: jdbc:mysql://tododb.c1q79gzob59l.ap-northeast-2.rds.amazonaws.com:3306/todo?useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&autoReconnect=true
     username: ENC(Zu52UORZKgBQtefcIQ85vg==)
     password: ENC(DfXDZvNDIdCOCy9XJmDqRw==)
     driver-class-name: com.mysql.cj.jdbc.Driver
